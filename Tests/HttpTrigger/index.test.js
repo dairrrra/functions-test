@@ -14,7 +14,7 @@ test('Success Test', async () => {
     const event = await JSON.parse(JSON.stringify(DEFAULT_EVENT));
     await httpFunction(context, event);
     expect(context.res.status).toEqual(200);
-    expect(context.res.message).toEqual('Success');
+    expect(context.res.body.message).toEqual('Success');
 });
 
 test('ValidationException Test(name undefined)', async () => {
@@ -22,7 +22,7 @@ test('ValidationException Test(name undefined)', async () => {
     delete event.query.name;
     await httpFunction(context, event);
     expect(context.res.status).toEqual(400);
-    expect(context.res.message).toEqual('Validation Error');
+    expect(context.res.body.message).toEqual('Validation Error');
 });
 
 test('ValidationException Test(age undefined)', async () => {
@@ -30,5 +30,5 @@ test('ValidationException Test(age undefined)', async () => {
     delete event.query.age;
     await httpFunction(context, event);
     expect(context.res.status).toEqual(400);
-    expect(context.res.message).toEqual('Validation Error');
+    expect(context.res.body.message).toEqual('Validation Error');
 });

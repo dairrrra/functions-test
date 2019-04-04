@@ -39,6 +39,6 @@ async function validateRequest(context, req) {
 
     const errors = await validate({name: req.query.name, age: req.query.age}, constraints);
     if (errors) {
-        throw await new ValidationException(errors);
+        throw new ValidationException(errors);
     };
 };
